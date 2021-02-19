@@ -2,9 +2,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: mysql
+  name: mariadb
   labels:
-    name: mysql
+    name: mariadb
 spec:
   type: ClusterIP      #这里代表是NodePort类型的
   ports:
@@ -12,4 +12,4 @@ spec:
     targetPort: 3306  #端口一定要和container暴露出来的端口对应，nodejs暴露出来的端口是8081，所以这里也应是8081
     protocol: TCP
   selector:
-    app: mysql          #这里选择器一定要选择容器的标签，之前写name:kube-node是错的。
+    app: mariadb          #这里选择器一定要选择容器的标签，之前写name:kube-node是错的。
