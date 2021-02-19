@@ -10,10 +10,10 @@ spec:
     - port: 8888
       targetPort: notebook
       protocol: TCP
-      name: http
+      name: notebook
     - port: 9999
       targetPort: web
       protocol: TCP
-      name: http      
+      name: web      
   selector:
     {{- include "pystock.selectorLabels" . | nindent 4 }}
