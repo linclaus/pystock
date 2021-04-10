@@ -1,9 +1,7 @@
-#!/bin/sh
+#/bin/sh
+set -x
 
-DOCKER_TAG=pythonstock/pythonstock:latest
+CI_COMMIT_TAG=$(git describe --always --tags)
 
-echo " docker build -f Dockerfile -t ${DOCKER_TAG} ."
-docker build -f Dockerfile -t ${DOCKER_TAG} .
-echo "#################################################################"
-echo " docker push ${DOCKER_TAG} "
-
+docker build -t linclaus/pystock:$CI_COMMIT_TAG -f Dockerfile .
+docker push linclaus/pystock:$CI_COMMIT_TAG
