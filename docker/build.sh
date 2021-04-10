@@ -1,9 +1,15 @@
-#/bin/sh
-set -x
+#!/bin/sh
 
-CI_COMMIT_TAG=$(git describe --always --tags)
 
-docker build -t linclaus/pystock:$CI_COMMIT_TAG -f docker/Dockerfile .
-docker push linclaus/pystock:$CI_COMMIT_TAG
+NOW_MONTH=$(date "+%Y-%m")
+
+DOCKER_TAG=pythonstock/pythonstock:base-${NOW_MONTH}
+
+echo " docker build -f Dockerfile -t ${DOCKER_TAG} ."
+docker build -f Dockerfile -t ${DOCKER_TAG} .
+echo "#################################################################"
+echo " docker push ${DOCKER_TAG} "
+
+
 
 
