@@ -8,6 +8,7 @@ import numpy as np
 import math
 import datetime
 import stockstats
+import eastmoneypy
 
 
 ### 对每日指标数据，进行筛选。将符合条件的。二次筛选出来。
@@ -40,6 +41,11 @@ def stat_all_lite_buy(tmp_datetime):
     data = pd.read_sql(sql=sql_1, con=common.engine(), params=[datetime_int])
     data = data.drop_duplicates(subset="code", keep="last")
     print("######## len data ########:", len(data))
+
+    eastmoneypy.del_group("buy")
+    eastmoneypy.create_group("buy")
+    for d in data:
+        eastmoneypy.add_to_group(d["code"],group_name="buy")
 
     try:
         common.insert_db(data, "guess_indicators_lite_buy_daily", False, "`date`,`code`")
@@ -75,6 +81,11 @@ def stat_all_lite_sell(tmp_datetime):
     data = pd.read_sql(sql=sql_1, con=common.engine(), params=[datetime_int])
     data = data.drop_duplicates(subset="code", keep="last")
     print("######## len data ########:", len(data))
+
+    eastmoneypy.del_group("sell")
+    eastmoneypy.create_group("sell")
+    for d in data:
+        eastmoneypy.add_to_group(d["code"], group_name="sell")
 
     try:
         common.insert_db(data, "guess_indicators_lite_sell_daily", False, "`date`,`code`")
