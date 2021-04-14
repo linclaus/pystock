@@ -42,13 +42,12 @@ def stat_all_lite_buy(tmp_datetime):
     data = data.drop_duplicates(subset="code", keep="last")
     print("######## len data ########:", len(data))
 
-    print(data)
     print("start eastmoney buy")
     try:
         eastmoneypy.del_group("buy")
         eastmoneypy.create_group("buy")
-        # for d in data:
-        eastmoneypy.add_to_group("000999",group_name="buy")
+        for row in data.iterrows():
+            eastmoneypy.add_to_group(row["code"],group_name="buy")
         print("end eastmoney buy")
     except Exception as e:
         print("error :", e)
@@ -88,14 +87,13 @@ def stat_all_lite_sell(tmp_datetime):
     data = data.drop_duplicates(subset="code", keep="last")
     print("######## len data ########:", len(data))
 
-    print(data)
     print("start eastmoney sell")
     try:
         eastmoneypy.del_group("sell")
         eastmoneypy.create_group("sell")
-        # for d in data:
-        eastmoneypy.add_to_group("000999", group_name="sell")
-        print("start eastmoney sell")
+        for row in data.iterrows():
+            eastmoneypy.add_to_group(row["code"], group_name="sell")
+        print("end eastmoney sell")
     except Exception as e:
         print("error :", e)
 
