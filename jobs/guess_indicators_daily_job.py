@@ -42,10 +42,16 @@ def stat_all_lite_buy(tmp_datetime):
     data = data.drop_duplicates(subset="code", keep="last")
     print("######## len data ########:", len(data))
 
-    eastmoneypy.del_group("buy")
-    eastmoneypy.create_group("buy")
-    # for d in data:
-    eastmoneypy.add_to_group("000999",group_name="buy")
+    print(data)
+    print("start eastmoney buy")
+    try:
+        eastmoneypy.del_group("buy")
+        eastmoneypy.create_group("buy")
+        # for d in data:
+        eastmoneypy.add_to_group("000999",group_name="buy")
+        print("end eastmoney buy")
+    except Exception as e:
+        print("error :", e)
 
     try:
         common.insert_db(data, "guess_indicators_lite_buy_daily", False, "`date`,`code`")
@@ -82,10 +88,16 @@ def stat_all_lite_sell(tmp_datetime):
     data = data.drop_duplicates(subset="code", keep="last")
     print("######## len data ########:", len(data))
 
-    eastmoneypy.del_group("sell")
-    eastmoneypy.create_group("sell")
-    # for d in data:
-    eastmoneypy.add_to_group("000999", group_name="sell")
+    print(data)
+    print("start eastmoney sell")
+    try:
+        eastmoneypy.del_group("sell")
+        eastmoneypy.create_group("sell")
+        # for d in data:
+        eastmoneypy.add_to_group("000999", group_name="sell")
+        print("start eastmoney sell")
+    except Exception as e:
+        print("error :", e)
 
     try:
         common.insert_db(data, "guess_indicators_lite_sell_daily", False, "`date`,`code`")

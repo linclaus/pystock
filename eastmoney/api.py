@@ -129,12 +129,12 @@ if __name__ == '__main__':
     groups = get_groups()
     print(groups)
 
-    print(get_group_id('bull'))
+    print(get_group_id('sell'))
 
-    del_group('bull')
+    del_group('sell')
 
-    g = create_group('bull')
+    g = create_group('sell')
     print(g)
 
-    print(add_to_group('000999', group_name='bull'))
-    print(add_to_group('688001', group_name='bull'))
+    print(add_to_group('000999', group_name='sell'))
+    print(add_to_group('688001', group_name='sell'))
