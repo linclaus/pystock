@@ -43,14 +43,15 @@ def stat_all_lite_buy(tmp_datetime):
     print("######## len data ########:", len(data))
 
     print("start eastmoney buy")
+    group_name = "buy"+str(datetime.datetime.now().hour)
     try:
-        eastmoneypy.del_group("buy")
-        eastmoneypy.create_group("buy")
-        for _, row in data.iterrows():
-            eastmoneypy.add_to_group(row["code"],group_name="buy")
-        print("end eastmoney buy")
+        eastmoneypy.del_group(group_name)
     except Exception as e:
         print("error :", e)
+    eastmoneypy.create_group(group_name)
+    for _, row in data.iterrows():
+        eastmoneypy.add_to_group(row["code"], group_name=group_name)
+    print("end eastmoney buy")
 
     try:
         common.insert_db(data, "guess_indicators_lite_buy_daily", False, "`date`,`code`")
@@ -88,14 +89,16 @@ def stat_all_lite_sell(tmp_datetime):
     print("######## len data ########:", len(data))
 
     print("start eastmoney sell")
+    group_name = "sell" + str(datetime.datetime.now().hour)
     try:
-        eastmoneypy.del_group("sell")
-        eastmoneypy.create_group("sell")
-        for _, row in data.iterrows():
-            eastmoneypy.add_to_group(row["code"], group_name="sell")
-        print("end eastmoney sell")
+        eastmoneypy.del_group(group_name)
+
     except Exception as e:
         print("error :", e)
+    eastmoneypy.create_group(group_name)
+    for _, row in data.iterrows():
+        eastmoneypy.add_to_group(row["code"], group_name=group_name)
+    print("end eastmoney sell")
 
     try:
         common.insert_db(data, "guess_indicators_lite_sell_daily", False, "`date`,`code`")
