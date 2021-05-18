@@ -28,7 +28,7 @@ def stat_all_lite_buy(tmp_datetime):
                             `settlement`, `volume`, `turnoverratio`, `amount`, `per`, `pb`, `mktcap`,
                              `nmc` ,`kdjj`,`rsi_6`,`cci`
                         FROM stock_data.guess_indicators_daily WHERE `date` = %s 
-                        and kdjk >= 70 and kdjd >= 60 and kdjj >= 90  and rsi_6 >= 70 and cci >= 90 and mktcap > 10000000
+                        and kdjk >= 70 and kdjd >= 60 and kdjj >= 90  and rsi_6 >= 70 and cci >= 90 and mktcap > 5000000
     """  # and kdjj > 100 and rsi_6 > 80  and cci > 100 # 调整参数，提前获得股票增长。
 
     try:
@@ -74,7 +74,7 @@ def stat_all_lite_sell(tmp_datetime):
                             `settlement`, `volume`, `turnoverratio`, `amount`, `per`, `pb`, `mktcap`,
                              `nmc` ,`kdjj`,`rsi_6`,`cci`
                         FROM stock_data.guess_indicators_daily WHERE `date` = %s 
-                        and kdjk <= 30 and kdjd <= 40 and kdjj <= 20  and rsi_6 <= 30  and cci <= -110 and mktcap > 10000000
+                        and kdjk <= 30 and kdjd <= 40 and kdjj <= 20  and rsi_6 <= 30  and cci <= -110 and mktcap > 5000000
     """
 
     try:
