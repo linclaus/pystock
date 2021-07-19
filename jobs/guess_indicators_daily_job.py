@@ -43,7 +43,7 @@ def stat_all_lite_buy(tmp_datetime):
     print("######## len data ########:", len(data))
 
     print("start eastmoney buy")
-    group_name = "buy"+str(datetime.datetime.now().hour)
+    group_name = "buy"
     try:
         eastmoneypy.del_group(group_name)
     except Exception as e:
@@ -89,7 +89,7 @@ def stat_all_lite_sell(tmp_datetime):
     print("######## len data ########:", len(data))
 
     print("start eastmoney sell")
-    group_name = "sell" + str(datetime.datetime.now().hour)
+    group_name = "sell" 
     try:
         eastmoneypy.del_group(group_name)
 
